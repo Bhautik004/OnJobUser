@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (@TempData["Message"] != "0")
+{
+    <script type="text/javascript">
+
+
+
+        var x = '@TempData["Message"]';
+        $(document).ready(function() {
+
+
+            if ('@TempData["Message"]' == "Logout Successfully") {
+                toastr.error(x);
+            } else if ('@TempData["Message"]' == '0') {
+                toastr.success("Send Successfull!!");
+            } else if ('@TempData["Message"]' == '1') {
+                toastr.error("Please Login Frist !!");
+            }
+        });
+
+    </script>
+}
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Contact Us
+                </h1>
+                <p class="text-white"><a href="/Home/Index">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href=""> Contact Us</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start contact-page Area -->
+<section class="contact-page-area section-gap">
+    <div class="container">
+        <div class="row">
+            @Html.Partial("_SearchJob")
+            <div class="col-lg-8">
+
+                @using (Html.BeginForm("SendMsg", "Contact", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-lg-12 form-group">
+                            <input name="username" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" required="" type="text">
+
+                            <input name="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'" class="common-input mb-20 form-control" required="" type="email">
+
+                            <input name="subject" placeholder="Enter your subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'" class="common-input mb-20 form-control" required="" type="text">
+
+                            <textarea class="common-textarea mt-10 form-control" name="message" placeholder="Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+                            <input type="submit" name="submit" value="Send Message" class="btn btn-info mt-20 text-white" style="float: right;" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

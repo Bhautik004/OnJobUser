@@ -1,0 +1,36 @@
+﻿@model OnJobEntity.JobSeeker.User
+
+
+
+
+<div class="col-lg-4 sidebar">
+    <div class="single-slidebar">
+        <figure class="mb-5">
+            <a href="javascript:avoid(0)" class="employer-dashboard-thumb">
+                <img class="profile-picture" src="~/Content/img/@Model.Profile_picture_path" alt="">
+                
+            </a>
+            <figcaption>
+                <h2>@Model.FirstName</h2>
+            </figcaption>
+        </figure>
+        <ul class="cat-list">
+            <li>
+                <a class="text_active" href="/User/Profile"><p><i class="fa fa-user-o pr-2"></i> My Profile</p></a>
+            </li>
+            <li>
+                <a class="" href="/User/Myapplication"><p><i class="fa fa-file-word-o pr-2"></i> My Applications</p></a>
+            </li>
+           
+            <li>
+                <a class="" href="/User/ShowSavedJob"><p><i class="fa fa-heart-o pr-2"></i> Saved Jobs</p></a>
+            </li>
+            <li>
+                <a class="" href="/User/ChangePassword"><p><i class="fa fa-lock pr-2"></i> Change Password</p></a>
+            </li>
+            <li>
+                <a class="" href="/Login/Logout"><p><i class="fa fa-sign-out pr-2"></i> LogOut</p></a>
+            </li>
+        </ul>
+    </div>
+</div>

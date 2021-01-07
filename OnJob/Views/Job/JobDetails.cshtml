@@ -1,0 +1,135 @@
+﻿@model OnJobEntity.JobSeeker.JobPost
+@{
+    ViewBag.Title = "JobDetails";
+}
+<script>
+    $(document).ready(function () {
+
+        if ($('#hdnSessionValue').val() != "") {
+
+            $('#btn-apply').show();
+            $('#Login').hide();
+        } else {
+            $('#btn-apply').hide();
+            $('#Login').show();
+        }
+
+    });
+</script>
+
+
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Job Details
+                </h1>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="post-area section-gap">
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-lg-8 col-12">
+            </div>
+            <div class="col-lg-8 post-list">
+                <div class="single-post d-flex flex-row">
+                    <div class="details col-12">
+                        <div class="title d-flex flex-row justify-content-between mb-2">
+                            <div class="titles">
+                                <a href="#"><h4>@Model.Title</h4></a>
+                                <h6>@Model.name</h6>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <p class="address">
+                            <strong>Industry:</strong> @Model.inds_type
+                        </p>
+                        <p class="address">
+                            <strong>Total Positions:</strong> @Model.positionavailable
+                        </p>
+                        <p class="address">
+                            <strong>Job Type:</strong> @Model.jobtype
+                        </p>
+
+                        <p class="address">
+                            <strong>Salary:</strong> @Model.Salary_min ₹  - @Model.Salary_max ₹ (@Model.sp)
+                        </p>
+                        <p class="address">
+                            <strong>Education:</strong> @Model.Description
+                        </p>
+                        <p class="address">
+                            <strong>Experience:</strong> @Model.Working_experience Year(min)
+                        </p>
+                        <p class="address">
+                            <strong>Location:</strong> @Model.s_name ,@Model.c_name
+                        </p>
+                        <p class="address">
+                            <strong>Posted Date:</strong> @Model.Created_date
+                        </p>
+
+
+
+                    </div>
+                </div>
+                <div id="apply-block">
+                    
+                        <div class="card card-body">
+
+                            <a class="btn btn-primary btn-block" id="btn-apply" data-toggle="collapse" href="#collapseExample" role="button">Apply for this Job</a>
+                            <a href="#" class="btn btn-primary btn-block" id="Login">Please login as JobSeeker</a>
+
+                        </div>
+
+                   
+                
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <h4 class="card-title"></h4>
+                            @using (Html.BeginForm("AppliedJob", "Job", FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                        <div class="form-group">
+
+                            <textarea name="cover_letter" class="form-control" rows="5" placeholder="Cover Message"></textarea>
+
+                        </div>
+
+                                <!-- Hidden Inputs -->
+                                <input type="hidden" name="user_id" value="@Session["Id"]">
+                                <input type="hidden" name="job_id" value="@Model.id">
+                                <input type="hidden" name="c_id" value="@Model.c_id">
+
+                                <button type="submit" name="submit" value="submit" class="btn btn-primary btn-block">Submit</button>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+      
+        $(document).ready(function () {
+            $("#btn-apply").click(function () {
+                $('html, body').animate({
+                    scrollTop: $("#apply-block").offset().top - 90
+                }, 1000);
+            });
+        });
+    });
+</script>

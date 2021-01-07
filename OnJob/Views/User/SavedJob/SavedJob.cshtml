@@ -1,0 +1,33 @@
+﻿@model OnJobEntity.JobSeeker.User
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Saved Jobs
+                </h1>
+                <p class="text-white link-nav"><a href="#">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href=""> Saved Jobs</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="post-area section-gap">
+    <div class="container">
+        <div class="row justify-content-center d-flex">
+
+            @Html.Partial("_UserSideBar")
+
+
+            <div class="col-lg-8 post-list">
+                @Html.Partial("~/Views/User/SavedJob/_savedjob.cshtml")
+
+            </div>
+        </div>
+    </div>
+</section>

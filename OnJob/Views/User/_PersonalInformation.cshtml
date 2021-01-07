@@ -1,0 +1,173 @@
+﻿@model OnJobEntity.JobSeeker.User
+
+
+
+
+<div class="profile_job_content col-lg-12">
+    <div class="headline">
+        <h3>
+            Personal Information
+
+            
+        </h3>
+    </div>
+    @using (Html.BeginForm("UpdateInfo", "User", FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="profile_job_detail">
+            <div class="row">
+                <div class="col-12">
+                    <div class="submit-field">
+                        <h5>Profile Picture</h5>
+
+                        @Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control", type = "hidden", value = "@Model.id" } })
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "hidden", value = Model.Password } })
+                        @Html.EditorFor(model => model.CPassword, new { htmlAttributes = new { @class = "form-control", type = "hidden", value = Model.Password } })
+                        @Html.EditorFor(model => model.Profile_picture_path, new { htmlAttributes = new { @class = "form-control", type = "file", name = "file" } })
+                        @Html.ValidationMessageFor(model => model.Profile_picture_path, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>First Name *</h5>
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control disble", placeholder = "First Name", value = Model.FirstName } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>Last Name *</h5>
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control disble", placeholder = "Last Name", value = Model.LastName } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>Email *</h5>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email", value = Model.Email } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>Phone *</h5>
+                        @Html.EditorFor(model => model.Mobile_no, new { htmlAttributes = new { @class = "form-control", placeholder = "Mobile No" } })
+                        @Html.ValidationMessageFor(model => model.Mobile_no, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>Date of Birth:</h5>
+                        @Html.EditorFor(model => model.Dob, new { htmlAttributes = new { @class = "form-control", placeholder = "Date Of Birth", type = "date" } })
+                        @Html.ValidationMessageFor(model => model.Dob, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>Age *</h5>
+                        @Html.DropDownListFor(model => model.Age, new SelectList(ViewBag.Age, "Value", "Text"), new { id = "Age", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>Category *</h5>
+
+                        @Html.DropDownListFor(model => model.Category, new List<SelectListItem>(),"Please Select", new { id = "category", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>Your Title *</h5>
+                        @Html.EditorFor(model => model.Job_title, new { htmlAttributes = new { @class = "form-control", placeholder = "eg, web developer & designer" } })
+                        @Html.ValidationMessageFor(model => model.Job_title, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>Experience *</h5>
+                        @Html.DropDownListFor(model => model.Experience, new SelectList(ViewBag.Experience, "Value", "Text"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>Skills *</h5>
+                        @Html.EditorFor(model => model.Skills, new { htmlAttributes = new { @class = "form-control", placeholder = "eg, html, css, php, javascript" } })
+                        @Html.ValidationMessageFor(model => model.Skills, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>Current Salary(INR) *</h5>
+                        @Html.DropDownListFor(model => model.Current_salary, new SelectList(ViewBag.Salary, "Value", "Text"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Current_salary, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>Expected Salary(INR) *</h5>
+                        @Html.DropDownListFor(model => model.Expected_salary, new SelectList(ViewBag.Salary, "Value", "Text"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Expected_salary, "", new { @class = "text-danger" })
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>State *</h5>
+
+                        @Html.DropDownListFor(model => model.State, new List<SelectListItem>(), new { id = "state", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>City *</h5>
+
+
+                        @Html.DropDownListFor(model => model.City, new List<SelectListItem>(), new { id = "city", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <div class="submit-field">
+                        <h5>Full Address *</h5>
+
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Full Address" } })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <div class="submit-field">
+                        <input type="submit" class="btn job_detail_btn" name="update" value="Update">
+                    </div>
+                </div>
+
+            </div>
+        </div>}
+    </div>
+
+
+   

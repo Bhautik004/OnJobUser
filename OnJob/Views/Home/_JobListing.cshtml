@@ -1,0 +1,66 @@
+﻿@model OnJobEntity.JobSeeker.User
+@foreach (var item in Model.lstjobpost)
+{
+<div class="single-post d-flex flex-row ">
+    <div class="thumb">
+        <img src="https://codeglamour.com/php/onjob/assets/img/job_icon.png" alt="">
+    </div>
+    <div class="details">
+        <div class="title d-flex flex-row justify-content-between">
+            <div class="titles">
+                <a href="javascript:void(0)" data-job_id="@item.id" data-id="job_details" id="job_details"><h4>@item.Title</h4></a>
+                <h6>Job Type : @item.jobtype</h6>
+                <h6>Category : @item.name</h6>
+                <h6>Post By : @item.Company_name</h6>
+                <h6 hidden>Post By : @item.c_id</h6>
+            </div>
+        </div>
+        <div class="job-listing-footer">
+            <ul>
+                <li><i class="lnr lnr-map-marker"></i> @item.s_name, @item.c_name</li>
+                <li><i class="lnr lnr-apartment"></i>@item.inds_type</li>
+                <li><i class="lnr lnr-calendar-full"></i> @item.Expiry_date</li>
+            </ul>
+        </div>
+    </div>
+    <div class="job-listing-btns">
+        <ul class="btns">
+            <li><a class="saved_job" data-job_id="@item.id" id="save"><span class="lnr lnr-heart"></span></a></li>
+
+            <li><a href="javascript:void(0)" data-job_id="@item.id" data-id="job_details" id="job_details">Apply</a></li>
+
+        </ul>
+    </div>
+    
+</div>
+
+
+}
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        $(document).on('click', '#job_details', function () {
+            var Id = $(this).data('job_id');
+               window.location.href = "@Url.Action("JobDetails", "Job", new {id = "Id"})".replace("Id", Id);
+                //window.location.href = "@Url.Action("JobDetails", "Job")";
+        });
+
+        $(document).on('click', '#save', function () {
+            var Id = $(this).data('job_id');
+            debugger;
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("SavedJob","User")',
+                data: { id: Id },
+                success: function (response) {
+                    alert(response);
+                }
+            });
+
+        });
+        
+    });
+</script>

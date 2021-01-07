@@ -1,0 +1,40 @@
+﻿@model OnJobEntity.JobSeeker.User
+
+
+@using (Html.BeginForm("UploadFile", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="profile_job_content col-lg-12 mt-5">
+        <div class="headline">
+            <h3>Resume / CV</h3>
+        </div>
+        <div class="profile_job_detail">
+            <div class="row">
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="submit-field">
+                        <h5>Resume * <small>(Maximum file size is 100kb, pdf only)</small></h5>
+
+                        @Html.EditorFor(model => model.Resume, new { htmlAttributes = new { @class = "form-control", type = "file", name = "file" } })
+                        @Html.ValidationMessageFor(model => model.Resume, "", new { @class = "text-danger" })
+
+                       
+
+                        @if (Model.Resume != null)
+                        {
+                        <a class="btn btn-outline" href="~/Content/resume/@Model.Resume"  target="_blank" rel="noopener noreferrer"><i class="lnr lnr-download"></i> <small>Download Uploaded Resume</small></a>
+                        }
+                        
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <div class="submit-field">
+
+                        <input type="submit" class="btn job_detail_btn" name="update_resume" value="Update">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

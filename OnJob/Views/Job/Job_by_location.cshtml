@@ -1,0 +1,48 @@
+﻿@model OnJobEntity.JobSeeker.User
+@{
+    ViewBag.Title = "jobs_by_location";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Job By Location
+                </h1>
+                <p class="text-white link-nav"><a href="/Home/Index">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="">Jobs by Location</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="post-area section-gap">
+    <div class="container">
+        <div class="row">
+
+            @foreach (var item in Model.states)
+            {
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="box-item-single text-center">
+                        <h5 class="title"><a href="javascript:void(0)" data-loc_id="@item.id" data-id="loc_details" id="loc_details"> @item.s_name</a></h5>
+
+                        <span class="count">(@item.count)</span>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function () {
+
+        $(document).on('click', '#loc_details', function () {
+            var Id = $(this).data('loc_id');
+            window.location.href = "@Url.Action("LocationByJobListing", "Job", new {id = "Id"})".replace("Id", Id);
+
+        });
+    });
+</script>

@@ -1,0 +1,67 @@
+﻿@if (Model.lstjobpost.Count == 0)
+{
+    <div class="col-lg-12">
+        <p class="text-gray" id="sry"><strong>Sorry,</strong> there is no job Appllied at the moment</p>
+    </div>
+}
+@foreach (var item in Model.lstjobpost)
+{
+    <div class="single-post d-flex flex-row">
+        <div class="thumb">
+            <img src="~/Content/assets/img/job_icon.png" alt="">
+        </div>
+        <div class="details">
+            <div class="title d-flex flex-row justify-content-between">
+                <div class="titles">
+                    <a href="javascript:void(0)" data-job_id="@item.jobid" data-id="job_details" id="job_details"><h4>@item.Title</h4></a>
+                    <h6>Job Type : @item.jobtype</h6>
+                    <h6>Category : @item.name</h6>
+                    <h6>Post By : @item.Company_name</h6>
+                </div>
+
+            </div>
+            <div class="job-listing-footer">
+                <ul>
+                    <li><i class="lnr lnr-map-marker"></i> @item.s_name,@item.c_name</li>
+                    <li><i class="lnr lnr-apartment"></i> @item.inds_type</li>
+                    <li><i class="lnr lnr-clock"></i> @item.Expiry_date</li>
+                </ul>
+            </div>
+        </div>
+        <div class="job-listing-btns ml-4">
+            <ul class="btns">
+                <li><a class="btn-delete" href="javascript:void(0)" data-job_id="@item.saveid" data-id="job_details" id="remove"><span class="lnr lnr-trash"></span></a></li>
+            </ul>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        $(document).on('click', '#job_details', function () {
+            var Id = $(this).data('job_id');
+               window.location.href = "@Url.Action("JobDetails", "Job", new {id = "Id"})".replace("Id", Id);
+                //window.location.href = "@Url.Action("JobDetails", "Job")";
+        });
+
+        $(document).on('click', '#remove', function () {
+           var result = confirm("Remove Applied Job");
+            val = $(this).data('job_id')
+                if (result) {
+                    $.ajax({
+                        url: '@Url.Action("RemoveAppliedJob", "User")',
+                        data: { id: val },
+                        type:'post',
+                        success: function (responce) {
+                            alert(responce)
+                            window.location = '@Url.Action("Profile","User")'
+                        },
+                    });
+                }
+        });
+
+
+    });
+</script>

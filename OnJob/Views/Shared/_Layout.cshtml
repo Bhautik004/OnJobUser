@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Home - OnJob</title>
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="~/Content/assets/img/c3f8a7bbd04294d5e5867f1f27e0de11.png">
+    <meta charset="utf-8">
+    <meta name="description" content="your meta description here">
+    <meta name="keywords" content="meta tags here">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="canonical" href="../">
+
+    
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/assets/css/linearicons.css">
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/assets/css/nice-select.css">
+    <link rel="stylesheet" href="~/Content/assets/css/animate.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/owl.theme.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/owl.transitions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link rel="stylesheet" href="~/Content/assets/css/main.css">
+   
+    
+    <script src="~/Content/assets/js/vendor/jquery-3.3.1.min.js"></script>
+
+    <script language="javascript">
+        $(document).ready(function () {
+
+            if ($('#hdnSessionValue').val() != "") {
+
+                $('#Guest').show();
+                $('#login').hide();
+            } else {
+                $('#Guest').hide();
+                $('#login').show();
+            }
+
+        });
+    </script>
+
+</head>
+
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="row align-items-center d-flex">
+                <div class="col-2">
+                    <div id="logo">
+                        <a href="../"><img src="~/Content/assets/img/logo.png" alt="" title="" /></a>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <input type="hidden" id="hdnSessionValue" value="@Session["Email"]">
+                    <nav id="nav-menu-container">
+                        <ul class="nav-menu">
+
+                            <li class=""><a href="/Home/Index">Home</a></li>
+                            <li class="menu-has-children">
+                                <a href="">Jobs</a>
+                                <ul>
+                                    <li><a href="/Job/Search_Jobs">Search Job</a></li>
+                                    <li><a href="/Job/Job_by_category">Jobs by Category</a></li>
+                                    <li><a href="/Job/Job_by_industry">Jobs by Industry</a></li>
+                                    <li><a href="/Job/Job_by_location">Jobs by Location</a></li>
+                                    <li><a href="/Job/Search_Jobs">Browse all Jobs</a></li>
+                                </ul>
+                            </li>
+                            <li class=""><a href="/Company/Company">Companies</a></li>
+
+                            <li class=""><a href="/Contact/Contact">Contact Us</a></li>
+
+
+
+
+
+                            <li id="login"><a class="nav_btn mt-1 btn_login mt-1" href="/Login/Login"><i class="lnr lnr-user pr-1"></i> Login</a></li>
+
+
+                            <li class="menu-has-children margin-left-400" id="Guest">
+                                <img src="~/Content/assets/img/user.png" alt="user_img" height="35"><a href="#" class="sf-with-ul"> @Session["Name"]</a>
+                                <ul style="display: none;">
+                                    <li><a href="/User/Profile">My Profile</a></li>
+                                    <li><a href="/User/MyApplication">My Applications</a></li>
+                                   
+                                    <li><a href="/User/ShowSavedJob">Saved Jobs</a></li>
+                                    <li><a href="/User/ChangePassword">Change Password</a></li>
+                                    <li><a href="/Login/Logout">LogOut</a></li>
+                                </ul>
+                            </li>
+
+
+                        </ul>
+                    </nav><!-- #nav-menu-container -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    @RenderBody()
+
+
+
+    <!-- End Subscribe Area -->
+    <!-- start footer Area -->
+
+
+    <footer class="footer-area footer-section">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-lg-4  col-md-4 col-sm-6">
+                    <div class="single-footer-widget newsletter">
+                        <h6>About Us</h6>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing, Quisque lobortis elit.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing, Quisque lobortis elit.Lorem ipsum dolor sit amet, consectetur adipiscing, Quisque lobortis elit.Lorem ipsum dolor sit amet, consectetur adipiscing, Quisque lobortis elit.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3  col-md-3 col-sm-6">
+                    <div class="single-footer-widget newsletter">
+                        <h6>Quick Links</h6>
+                        <ul class="footer-nav">
+                            <li><a href="/Job/Search_Jobs">Search Job</a></li>
+                            <li><a href="/Job/Job_by_category">Jobs by Category</a></li>
+                            <li><a href="/Job/Job_by_industry">Jobs by Industry</a></li>
+                            <li><a href="/Job/Job_by_location">Jobs by Location</a></li>
+                            <li class=""><a href="/Company/Company">Listed Companies</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                
+
+
+                <div class="col-lg-2  col-md-2 col-sm-6">
+                    <div class="single-footer-widget newsletter">
+                        <h6>Job Seekers</h6>
+                        <ul class="footer-nav">
+                            <li><a href="/Login/JobSeekerRegistration">Create Account</a></li>
+                            <li><a href="/#">Matching Jobs</a></li>
+                            <li><a href="/Job/Search_Jobs">Apply for Job</a></li>
+                            <li><a href="/#">Applied Jobs</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </footer>
+    <!-- End Footer Area -->
+    <!-- start Copyright Area -->
+    <div class="copyright1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-8">
+                    <div class="bottom_footer_info">
+                        <p>Copyright © 2020 OnJob - All Rights Reserved. (Only For Educational Purposes)</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-4">
+                    <div class="bottom_footer_logo text-right">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a target="_blank" href="https://facebook.com"><i class="fa fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a target="_blank" href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a target="_blank" href="https://google.com"><i class="fa fa-google"></i></a></li>
+                            <li class="list-inline-item"><a target="_blank" href="https://linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="~/Content/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="~/Content/assets/js/easing.min.js"></script>
+    <script src="~/Content/assets/js/hoverIntent.js"></script>
+    <script src="~/Content/assets/js/superfish.min.js"></script>
+    <script src="~/Content/assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Content/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/assets/js/owl.carousel.min.js"></script>
+    <script src="~/Content/assets/js/jquery.sticky.js"></script>
+    <script src="~/Content/assets/js/jquery.nice-select.min.js"></script>
+    <script src="~/Content/assets/js/parallax.min.js"></script>
+    <!-- Notify JS -->
+    <script src="~/Content/assets/js/notify.min.js"></script>
+    <script src="~/Content/assets/js/main.js"></script>
+    <!-- Custom JS-->
+    <!-- Below code for Stripe payment form -->
+  
+
+    <script type="text/javascript">
+
+
+        $(document).on('click', '#exe_id', function () {
+          var result = confirm("Want to delete?");
+                val = $(this).data('exp_id')
+                if (result) {
+                    $.ajax({
+                        url: '@Url.Action("DeleteExperience", "User")',
+                        data: { id: val },
+                        type:'post',
+                        success: function (responce) {
+                            alert(responce)
+                            window.location = '@Url.Action("Profile","User")'
+                        },
+
+                    });
+                }
+        });
+
+
+
+        $(document).on('click', '#edu_id', function () {
+           var result = confirm("Want to delete?");
+                val = $(this).data('edu_id')
+                if (result) {
+                    $.ajax({
+                        url: '@Url.Action("DeleteEducation", "User")',
+                        data: { id: val },
+                        type:'post',
+                        success: function (responce) {
+                            alert(responce)
+                            window.location = '@Url.Action("Profile","User")'
+                        },
+                    });
+                }
+        });
+
+
+        $(document).on('click', '#lan-delete', function () {
+          var result = confirm("Want to delete?");
+            val = $(this).data('lan_id')
+                if (result) {
+                    $.ajax({
+                        url: '@Url.Action("DeleteLanguage", "User")',
+                        data: { id: val },
+                        type:'post',
+                        success: function (responce) {
+                            alert(responce)
+                            window.location = '@Url.Action("Profile","User")'
+                        },
+
+                    });
+                }
+        });
+
+
+
+
+        $(document).on('click', '.edit-experience', function () {
+            val = $(this).data('exp_id')
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetExperience_By_id","User")',
+                data: { id: val },
+                success: function (response) {
+
+                    $('#user-experience').collapse('show');
+                    $('#addexperienceModel_e_id').val(response.e_id);
+                    $('#addexperienceModel_flag').val("1");
+                    $('#addexperienceModel_job_title').val(response.job_title);
+                    $('#addexperienceModel_company').val(response.company);
+                    $('#addexperienceModel_starting_month').val(response.starting_month);
+                    $('#addexperienceModel_starting_year').val(response.starting_year);
+                    $('#addexperienceModel_ending_month').val(response.ending_month);
+                    $('#addexperienceModel_ending_year').val(response.ending_year);
+                    $('#addexperienceModel_currently_working_here').val(response.currently_working_here);
+                    $('#addexperienceModel_description').val(response.description);
+
+
+                }
+
+            });
+        });
+
+        $(document).on('click', '#exe_close', function () {
+            $('#user-experience').collapse('hide');
+        });
+
+        $(document).on('click', '#add', function () {
+
+                    $('#addexperienceModel_job_title').val("");
+                    $('#addexperienceModel_company').val("");
+                    $('#addexperienceModel_starting_month').val("");
+                    $('#addexperienceModel_starting_year').val("");
+                    $('#addexperienceModel_ending_month').val("");
+                    $('#addexperienceModel_ending_year').val("");
+                    $('#addexperienceModel_currently_working_here').val("");
+                    $('#addexperienceModel_description').val("");
+
+        });
+
+
+        $(document).on('click', '.edit-education', function () {
+            val = $(this).data('edu_id')
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetEducation_By_id", "User")',
+                data: { id: val },
+                success: function (response) {
+
+                    $('#user-education').collapse('show');
+                    $('#education_id').val(response.id);
+                    $('#education_flag').val("1");
+                    // $("#sel_user").append("<option value='"+id+"'>"+name+"</option>");
+                    $('#education_Degree_Level').val(response.Degree_Level)
+                    $('#education_Degree_Title').val(response.Degree_Title)
+                    $('#education_Major_Subject').val(response.Major_Subject)
+                    $('#education_Institution').val(response.Institution)
+                    $('#education_Completion_Year').val(response.Completion_Year)
+
+                }
+
+            });
+        });
+
+        $(document).on('click', '#edu_close', function () {
+            $('#user-education').collapse('hide');
+        });
+
+        $(document).on('click', '#add_edu', function () {
+
+            $('#education_Degree_Level').val("")
+            $('#education_Degree_Title').val("")
+            $('#education_Major_Subject').val("")
+            $('#education_Institution').val("")
+            $('#education_Completion_Year').val("")
+
+        });
+
+
+
+
+        $(document).on('click', '.edit-language', function () {
+            val = $(this).data('lang_id')
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetLanguage_By_id", "User")',
+                data: { id: val },
+                success: function (response) {
+
+                    $('#user-language').collapse('show');
+                    $('#language_id').val(response.id);
+                    $('#language_flag').val("1");
+                    // $("#sel_user").append("<option value='"+id+"'>"+name+"</option>");
+                    $('#language_language').val(response.language)
+                    $('#language_proficiency').val(response.proficiency)
+                   
+
+                }
+
+            });
+        });
+
+        $(document).on('click', '#lan_close', function () {
+            $('#user-language').collapse('hide');
+        });
+
+        $(document).on('click', '#add_lan', function () {
+
+            $('#language.language').val("")
+            $('#languag.proficiency').val("")
+
+        });
+
+     //   function DisableBackButton() {
+     //  window.history.forward()
+     // }
+     //DisableBackButton();
+     //window.onload = DisableBackButton;
+     //window.onpageshow = function(evt) { if (evt.persisted) DisableBackButton() }
+     //window.onunload = function() { void (0) }
+
+    </script>
+    
+</body>
+</html>

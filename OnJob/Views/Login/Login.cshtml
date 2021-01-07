@@ -1,0 +1,136 @@
+﻿@model OnJobEntity.JobSeeker.User
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (@TempData["Message"] != null)
+{
+<script type="text/javascript">
+     var x = '@TempData["Message"]';
+    $(document).ready(function () {
+        if ('@TempData["Message"]' == "Already Email Registraion!!" || '@TempData["Message"]' == "Invalid Email and Password")
+        {
+            toastr.error(x);
+        } else if ('@TempData["Message"]' == "5") {
+            toastr.success("Mail Send Successfull !!");
+        } else if('@TempData["Message"]' == "2") {
+            toastr.error("All Field Required !!");
+        } else if ('@TempData["Message"]' == "3") {
+            toastr.error("User Not Found!!");
+        }else {
+            toastr.success(x);
+        }
+    });
+</script>
+}
+
+<div class="container-login100">
+    <div class="wrap-login100">
+        <span class="login100-form-title pb-4">
+            Sign in
+        </span>
+        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Job Seeker</a>
+            </li>
+            @*<li class="nav-item">
+                <a class="nav-link " id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Companies</a>
+            </li>*@
+        </ul>
+
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                @using (Html.BeginForm("Login", "Login"))    //1 method 2 controller*@
+                {
+                    @Html.AntiForgeryToken()
+
+                <div class="wrap-input100 mb-3" data-validate="Valid email is required: ex@abc.xyz">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input100", placeholder = "Email" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <span class="lnr lnr-envelope"></span>
+                    </span>
+                </div>
+
+                <div class="wrap-input100 mb-3" data-validate="Password is required">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "input100", placeholder = "Password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <span class="lnr lnr-lock"></span>
+                    </span>
+                </div>
+
+
+
+                    <div class="container-login100-form-btn pt-4">
+                        <input type="submit" class="login100-form-btn" name="login" value="LogIn">
+                    </div>
+                }
+                    <div class="text-center w-full pt-4">
+                        <a class="txt1 bo1 hov1" href="/Login/Forgotpassword">
+                            Forgot Password?
+                        </a>
+                    </div>
+                    <div class="text-center w-full pt-3">
+                        <span class="txt1">
+                            Don't have an account?
+                        </span>
+                        <a class="txt1 bo1 hov1" href="/Login/JobSeekerRegistration">
+                            Sign up now
+                        </a>
+                    </div>
+                </div>
+
+            <!-- Employer Login Page -->
+            <div class="tab-pane fade " id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <form action="https://codeglamour.com/php/onjob/employers/auth/login" id="login_form" method="post" class="login100-form validate-form" accept-charset="utf-8">
+                    <input type="hidden" name="csrf_test_name" value="c1c4400ba25bda1e37c8ea9321cfa11b" />
+
+                    <div class="wrap-input100 mb-3" data-validate="Valid email is required: ex@abc.xyz">
+                        <input class="input100" type="text" name="email" placeholder="Email">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <span class="lnr lnr-envelope"></span>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 mb-3" data-validate="Password is required">
+                        <input class="input100" type="password" name="password" placeholder="Password">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <span class="lnr lnr-lock"></span>
+                        </span>
+                    </div>
+
+                    <div class="contact100-form-checkbox pt-2 ml-1">
+                        <input class="input-checkbox100" id="ckb" type="checkbox" name="remember-me">
+                        <label class="label-checkbox100" for="ckb">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <div class="container-login100-form-btn pt-4">
+                        <input type="submit" class="login100-form-btn" name="login" value="LogIn">
+                    </div>
+                </form>
+                <div class="text-center w-full pt-4">
+                    <a class="txt1 bo1 hov1" href="/Login/Forgotpassword">
+                        Forgot Password?
+                    </a>
+                </div>
+                <div class="text-center w-full pt-3">
+                    <span class="txt1">
+                        Don't have an account?
+                    </span>
+                    <a class="txt1 bo1 hov1" href="/Login/CompanyRegistration">
+                        Sign up now
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

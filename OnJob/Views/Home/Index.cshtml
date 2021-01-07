@@ -1,0 +1,198 @@
+﻿@model OnJobEntity.JobSeeker.User
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (@TempData["Message"] != "0")
+{
+<script type="text/javascript">
+
+
+
+        var x = '@TempData["Message"]';
+        $(document).ready(function() {
+
+
+            if ('@TempData["Message"]' == "Logout Successfully") {
+                toastr.error(x);
+            } else if ('@TempData["Message"]' == '0') {
+                toastr.error("Already Applied!!");
+            } else if ('@TempData["Message"]' == '1') {
+                toastr.success("Job Apply Successfull!!");
+            }
+        });
+
+</script>
+}
+
+
+
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-center">
+            <div class="banner-content col-lg-12">
+                <h1 class="text-white">
+                    Over <span id="count1" class="display-4"></span>+ jobs are waiting for you
+                </h1>
+                @using (Html.BeginForm("Searchjob", "Job", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                   
+                    <div class="row justify-content-center form-wrap no-gutters">
+                        <div class="col-lg-6 form-cols">
+
+                            @Html.DropDownListFor(model => model.Category, new List<SelectListItem>(), "Select Category", new { id = "category", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="col-lg-4 form-cols">
+                            @Html.DropDownListFor(model => model.State, new List<SelectListItem>(), "Select Location",new { id = "state", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+
+
+                        </div>
+                        <div class="col-lg-2 form-cols">
+                            <input type="submit" name="search" class="btn btn-info" value="Search">
+                        </div>
+                    </div>
+                   }
+                </div>
+        </div>
+    </div>
+</section>
+
+@Html.Partial("_FeatureJobCategories")
+
+<section class="post-area section-full bg-gray">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-60 col-lg-10">
+                <div class="title text-center">
+                    <h1 class="mb-10">Jobs Available</h1>
+                    <p>Who are in extremely love with eco friendly system</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center d-flex">
+            <div class="col-lg-8 post-list">
+
+                @Html.Partial("_JobListing")
+
+
+                <a class="text-uppercase loadmore-btn mx-auto d-block" href="/Job/Search_Jobs">Load More job Posts</a>
+            </div>
+
+            @*<div class="col-lg-4 sidebar">
+
+                    @Html.Partial("_JobByCity")
+
+                    @Html.Partial("_TopRateJob")
+
+                </div>*@
+
+        </div>
+    </div>
+</section>
+@Html.Partial("_TopCompany")
+
+<section class="callto-action-area section-half" id="join">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content col-lg-9">
+                <div class="title text-center">
+                    <h1 class="mb-10 text-white">Find A Job at India's No.1 Job Site</h1>
+                    <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            function counter(id, start, end, duration) {
+                let obj = document.getElementById(id),
+                    current = start,
+                    range = end - start,
+                    increment = end > start ? 1 : -1,
+                    step = Math.abs(Math.floor(duration / range)),
+                    timer = setInterval(() => {
+                        current += increment;
+                        obj.textContent = current;
+                        if (current == end) {
+                            clearInterval(timer);
+                        }
+                    }, step);
+            }
+            counter("count1", 0, 785, 10000);
+
+        });
+    $(document).ready(function () {
+        $(function () {
+
+
+            var cat_id = 0;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AjaxMethod", "User")',
+                dataType: "json",
+                data: { id: parseInt(cat_id) },
+                success: function (response) {
+
+                    $.each(response, function (key, value) {
+                        if (value.Selected) {
+                            $('#category').append($("<option selected></option>").val(value.Value).html(value.Text));
+                        } else {
+                            $('#category').append($("<option></option>").val(value.Value).html(value.Text));
+
+                        }
+
+                    });
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+
+        $(function () {
+            var state_id = 0;
+
+        $.ajax({
+            type: "POST",
+            url: "/User/AjaxMethodState/",
+            data: { id: parseInt(state_id) },
+            dataType: "json",
+            success: function (response) {
+
+                $.each(response, function (key, value) {
+                    if (value.Selected) {
+                        $('#state').append($("<option selected></option>").val(value.Value).html(value.Text));
+                    } else {
+                        $('#state').append($("<option></option>").val(value.Value).html(value.Text));
+                    }
+
+                });
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+       
+    });
+
+
+    });
+
+</script>

@@ -1,0 +1,95 @@
+﻿@model OnJobEntity.JobSeeker.User
+
+
+<div class="profile_job_content col-lg-12 mt-5">
+    <div class="headline">
+        <h3>Education <span class="pull-right action-circle add-education" id="add_edu"><i class="fa fa-plus" data-toggle="collapse" data-target="#user-education" ></i></span></h3>
+    </div>
+    <div class="profile_job_detail">
+        <div class="row">
+            @foreach (var item in Model.lstEducation)
+            {
+                <div class="col-md-12 col-sm-12">
+                    <div class="employer-job-list">
+                        <h5>@item.Description  , @item.Degree_Title</h5>
+                        <p>@item.Institution<br>@item.Completion_Year</p>
+                        <p>
+                            <a href="javascript:void(0)" class="edit-education" data-edu_id="@item.id"><i class="fa fa-pencil"></i></a>&nbsp;
+                            <a href="javascript:void(0)" data-edu_id="@item.id" id="edu_id" class="btn-delete" data-id="edu_delete"><i class="fa fa-trash"></i> </a>&nbsp;
+                        </p>
+                    </div>
+                </div>
+            }
+            </div>
+
+        <!-- collapse -->
+        <div id="user-education" class="collapse">
+            @using (Html.BeginForm("AddEducation", "User", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="submit-field">
+                            <label>Degree Level </label>
+
+                            @Html.EditorFor(model => model.education.flag, new { htmlAttributes = new { @class = "form-control", type = "hidden" } })
+                            @Html.EditorFor(model => model.education.id, new { htmlAttributes = new { @class = "form-control", type = "hidden" } })
+                            @Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control", type = "hidden" } })
+                           
+                            @Html.DropDownListFor(model => model.education.Degree_Level, new SelectList(ViewBag.GetDegreeLevel, "Value", "Text"), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.education.Degree_Level, "", new { @class = "text-danger" })
+                        
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="submit-field">
+                            <label>Degree Title</label>
+                            @Html.EditorFor(model => model.education.Degree_Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Title" } })
+                            @Html.ValidationMessageFor(model => model.education.Degree_Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="submit-field">
+                            <label>Major Subjects</label>
+                            @Html.EditorFor(model => model.education.Major_Subject, new { htmlAttributes = new { @class = "form-control", placeholder = "Major Subject" } })
+                            @Html.ValidationMessageFor(model => model.education.Major_Subject, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="submit-field">
+                            <label>Institution</label>
+                            @Html.EditorFor(model => model.education.Institution, new { htmlAttributes = new { @class = "form-control", placeholder = "Institution" } })
+                            @Html.ValidationMessageFor(model => model.education.Institution, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-6">
+                        <div class="submit-field">
+                            <label>Completion Year</label>
+                            @Html.DropDownListFor(model => model.education.Completion_Year, new SelectList(ViewBag.Year, "Value", "Text"), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.education.Completion_Year, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="submit-field">
+                            <button type="submit" class="btn job_detail_btn">Submit</button>
+                            <button type="button" class="btn job_detail_btn close_all_collapse" id="edu_close">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+        <!-- /collapse -->
+
+
+    </div>
+</div>

@@ -1,0 +1,136 @@
+﻿@model OnJobEntity.JobSeeker.User
+
+
+<div class="profile_job_content col-lg-12 mt-5">
+    <div class="headline">
+        <h3>Experience <span class="pull-right action-circle add-experience"><i class="fa fa-plus" id="add" data-toggle="collapse" data-target="#user-experience"></i></span></h3>
+    </div>
+    <div class="profile_job_detail">
+
+        <div class="row">
+            @foreach (var item in Model.lstexperiences)
+            {
+                <div class="col-md-12 col-sm-12">
+                    <div class="employer-job-list">
+                        <h4>@item.job_title at @item.company</h4>
+                        <p>@(item.starting_month +' '+item.starting_year) - @(item.currently_working_here  ? "Present" : item.ending_month +' ' +item.ending_year  ) | @item.country</p>
+                        <p class="overflow-ellipsis">@item.description</p>
+                        <p>
+                            <input type="hidden" value="@item.e_id" id="deletename" />
+                            <a href="javascript:void(0)" class="edit-experience" data-exp_id="@item.e_id"><i class="fa fa-pencil"></i></a>&nbsp;
+                
+                            <a href="javascript:void(0)" class="btn-delete" id="exe_id" data-id="exe_delete" data-exp_id="@item.e_id"><i class="fa fa-trash"></i></a>&nbsp;
+
+                    </div>
+                </div>
+            }
+
+
+        </div>
+
+        <!-- collapse -->
+        <div id="user-experience" class="collapse">
+            @using (Html.BeginForm("AddExperience", "User", FormMethod.Post))
+            {
+               
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="submit-field">
+                            <label>Job Title</label>
+                           
+
+                            @Html.EditorFor(model => model.id ,new { htmlAttributes = new { @class = "form-control",type="hidden"} })
+                            @Html.EditorFor(model => model.addexperienceModel.flag,new { htmlAttributes = new { @class = "form-control",type="hidden"} })
+                            @Html.EditorFor(model => model.addexperienceModel.e_id,new { htmlAttributes = new { @class = "form-control",type="hidden"} })
+                            @Html.EditorFor(model => model.addexperienceModel.job_title, new { htmlAttributes = new { @class = "form-control", placeholder = "Job Title" } })
+                            @Html.ValidationMessageFor(model => model.addexperienceModel.job_title, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="submit-field">
+                            <label>Company</label>
+
+
+                            @Html.EditorFor(model => model.addexperienceModel.company, new { htmlAttributes = new { @class = "form-control", placeholder = "Company" } })
+                            @Html.ValidationMessageFor(model => model.addexperienceModel.company, "", new { @class = "text-danger" })
+                          
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-3">
+                        <div class="submit-field">
+                            <label>Start Month</label>
+                            @Html.DropDownListFor(model => model.addexperienceModel.starting_month, new SelectList(ViewBag.Month, "Value", "Text"), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.addexperienceModel.starting_month, "", new { @class = "text-danger" })
+                           
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="submit-field">
+                            <label>Start Year</label>
+
+                            @Html.DropDownListFor(model => model.addexperienceModel.starting_year, new SelectList(ViewBag.Year, "Value", "Text"), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.addexperienceModel.starting_year, "", new { @class = "text-danger" })
+
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="submit-field exp-end-field">
+                            <label>End Month</label>
+                            @Html.DropDownListFor(model => model.addexperienceModel.ending_month, new SelectList(ViewBag.Month, "Value", "Text"), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.addexperienceModel.ending_month, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="submit-field exp-end-field">
+                            <label>End Year</label>
+                            @Html.DropDownListFor(model => model.addexperienceModel.ending_year, new SelectList(ViewBag.Year, "Value", "Text"), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.addexperienceModel.ending_year, "", new { @class = "text-danger" })
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="mt-5">
+                            @Html.CheckBoxFor(model => model.addexperienceModel.currently_working_here, new { @class = "currently_working_here" })
+                            Currently Working Here
+                        </label> 
+                     
+                    </div>
+
+                    <div class="col-md-12 col-sm-12">
+                        <div class="submit-field">
+                            <h5>Description</h5>
+                            @Html.TextAreaFor(m => m.addexperienceModel.description, new { @class = "form-control" })
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="submit-field">
+                            <input type="submit" class="btn job_detail_btn" name="update_experience" value="Submit">
+                            <button type="button" class="btn job_detail_btn close_all_collapse" id="exe_close">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            }
+        </div>
+        <!-- /collapse -->
+        <!-- Edit collapse -->
+        
+        <!-- /edit collapse -->
+
+    </div>
+</div>

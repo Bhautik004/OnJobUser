@@ -1,0 +1,48 @@
+﻿@model OnJobEntity.JobSeeker.User
+<section class="feature-cat-area section-full" >
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-60 col-lg-10">
+                <div class="title text-center">
+                    <h1 class="mb-10">Featured Job Categories</h1>
+                    <p>Who are in extremely love with eco friendly system</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.categories)
+            {
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                    <div class="single-fcat">
+                        <a href="javascript:void(0)" data-cat_id="@item.id" id="cat_details">
+
+                            <img src="~/Content/assets/img/o1.png" alt="">
+
+                            <p>@item.name</p>
+                        </a>
+                    </div>
+                </div>
+
+                @*<div class="col-lg-2 col-md-4 col-lg-1">
+                    <div class="box-item-single text-center">
+                        <h5 class="title"><a href="https://codeglamour.com/php/onjob/jobs/category/engineering"> @item.name</a></h5>
+                        <span class="count"><a href="https://codeglamour.com/php/onjob/jobs/category/engineering">(1)</a></span>
+                    </div>
+                </div>*@
+            }
+
+
+
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function () {
+
+        $(document).on('click', '#cat_details', function () {
+            var Id = $(this).data('cat_id');
+            window.location.href = "@Url.Action("CategoryByJobListing", "Job", new {id = "Id"})".replace("Id", Id);
+
+        });
+    });
+</script>
