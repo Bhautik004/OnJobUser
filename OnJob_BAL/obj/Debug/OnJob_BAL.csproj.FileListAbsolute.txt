@@ -22,3 +22,27 @@ C:\Users\Bhautik\source\repos\OnJob_BAL\bin\Debug\System.Web.Razor.xml
 C:\Users\Bhautik\source\repos\OnJob_BAL\bin\Debug\System.Web.WebPages.xml
 C:\Users\Bhautik\source\repos\OnJob_BAL\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\Bhautik\source\repos\OnJob_BAL\bin\Debug\System.Web.WebPages.Razor.xml
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\OnJob_BAL.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\OnJob_BAL.pdb
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\OnJobEntity.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\OnJob_DAL.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\System.Web.Helpers.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\System.Web.Mvc.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\System.Web.Razor.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\System.Web.WebPages.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\System.Web.WebPages.Razor.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\OnJobEntity.pdb
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\OnJob_DAL.pdb
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\System.Web.Helpers.xml
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\System.Web.Mvc.xml
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\System.Web.Razor.xml
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\System.Web.WebPages.xml
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\bin\Debug\System.Web.WebPages.Razor.xml
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\obj\Debug\OnJob_BAL.csprojAssemblyReference.cache
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\obj\Debug\OnJob_BAL.csproj.CoreCompileInputs.cache
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\obj\Debug\OnJob_BAL.csproj.CopyComplete
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\obj\Debug\OnJob_BAL.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_BAL\obj\Debug\OnJob_BAL.pdb

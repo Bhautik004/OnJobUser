@@ -23,3 +23,28 @@ C:\Users\Bhautik\source\repos\OnJob_DAL\bin\Debug\System.Text.Encodings.Web.xml
 C:\Users\Bhautik\source\repos\OnJob_DAL\obj\Debug\OnJob_DAL.csproj.CopyComplete
 C:\Users\Bhautik\source\repos\OnJob_DAL\obj\Debug\OnJob_DAL.dll
 C:\Users\Bhautik\source\repos\OnJob_DAL\obj\Debug\OnJob_DAL.pdb
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\OnJob_DAL.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\OnJob_DAL.pdb
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\Microsoft.AspNetCore.Http.Features.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\Microsoft.Extensions.Primitives.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\OnJobEntity.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\System.Buffers.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\System.ComponentModel.Annotations.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\System.Memory.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\System.Numerics.Vectors.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\System.Text.Encodings.Web.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\System.Web.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\OnJobEntity.pdb
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\Microsoft.AspNetCore.Http.Features.xml
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\Microsoft.Extensions.Primitives.xml
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\System.Buffers.xml
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\System.Memory.xml
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\System.Numerics.Vectors.xml
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\bin\Debug\System.Text.Encodings.Web.xml
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\obj\Debug\OnJob_DAL.csprojAssemblyReference.cache
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\obj\Debug\OnJob_DAL.csproj.CoreCompileInputs.cache
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\obj\Debug\OnJob_DAL.csproj.CopyComplete
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\obj\Debug\OnJob_DAL.dll
+D:\SEM 6\PROJECT\OnJobUser\OnJob_DAL\obj\Debug\OnJob_DAL.pdb

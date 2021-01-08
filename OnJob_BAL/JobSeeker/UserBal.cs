@@ -33,7 +33,7 @@ namespace OnJob_BAL
 
         public User UpdateUserBL(User objUserBL) // passing Bussiness object Here  
         {
-
+			string spName = "[UpdateInfo]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.VarChar, objUserBL.id));
             sqlParameters.Add(DBClient.AddParameters("firstname", SqlDbType.VarChar, objUserBL.FirstName));
@@ -52,7 +52,7 @@ namespace OnJob_BAL
             sqlParameters.Add(DBClient.AddParameters("state", SqlDbType.VarChar, objUserBL.State));
             sqlParameters.Add(DBClient.AddParameters("city", SqlDbType.VarChar, objUserBL.City));
             sqlParameters.Add(DBClient.AddParameters("address", SqlDbType.VarChar, objUserBL.Address));
-            User updateinfo = CommonDal.SelectObject<User>("UpdateInfo", sqlParameters.ToArray());
+            User updateinfo = CommonDal.SelectObject<User>(spName, sqlParameters.ToArray());
             return updateinfo;
 
         }
@@ -60,41 +60,46 @@ namespace OnJob_BAL
 
         public User GetLoginDetails(User ObjUser)
         {
-            List<SqlParameter> sqlParameters = new List<SqlParameter>();
+            string spName = "[login]";
+			List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("Email", SqlDbType.VarChar,ObjUser.Email));
             sqlParameters.Add(DBClient.AddParameters("Password", SqlDbType.VarChar,ObjUser.Password));
-            User jobData = CommonDal.SelectObject<User>("login", sqlParameters.ToArray());
+            User jobData = CommonDal.SelectObject<User>(spName, sqlParameters.ToArray());
             return jobData;
         }
 
         public User GetForgotPassword(User ObjUser)
         {
+			string spName = "[ForGotPassword]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("Email", SqlDbType.VarChar, ObjUser.Email));
-            User jobData = CommonDal.SelectObject<User>("ForGotPassword", sqlParameters.ToArray());
+            User jobData = CommonDal.SelectObject<User>(spName, sqlParameters.ToArray());
             return jobData;
         }
 
         public User GetData(int id)
         {
+			string spName = "[GetData]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
-            User jobData = CommonDal.SelectObject<User>("GetData", sqlParameters.ToArray());
+            User jobData = CommonDal.SelectObject<User>(spName, sqlParameters.ToArray());
             return jobData;
         }
 
         public User ChangePassword(string nPassword,int id)
         {
+			string spName = "[ChnagePassword]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
             sqlParameters.Add(DBClient.AddParameters("password", SqlDbType.VarChar,nPassword));
-            User jobData = CommonDal.SelectObject<User>("ChnagePassword", sqlParameters.ToArray());
+            User jobData = CommonDal.SelectObject<User>(spName, sqlParameters.ToArray());
             return jobData;
         }
 
 
         public void AddExperienceM(AddExperienceModel  ObjExperience,int id)
         {
+			string spName = "[AddExperience]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("u_id", SqlDbType.Int,id));
             sqlParameters.Add(DBClient.AddParameters("job_title", SqlDbType.VarChar, ObjExperience.job_title));
@@ -105,12 +110,13 @@ namespace OnJob_BAL
             sqlParameters.Add(DBClient.AddParameters("ending_year", SqlDbType.VarChar, ObjExperience.ending_year));
             sqlParameters.Add(DBClient.AddParameters("description ", SqlDbType.VarChar, ObjExperience.description));
             sqlParameters.Add(DBClient.AddParameters("currently_working_here", SqlDbType.Bit, ObjExperience.currently_working_here));
-             CommonDal.Crud("AddExperience", sqlParameters.ToArray());
+             CommonDal.Crud(spName, sqlParameters.ToArray());
             
         }
 
         public void EditExperience(AddExperienceModel ObjExperience, int id)
         {
+			string spName = "[EditExperience]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("e_id", SqlDbType.Int,ObjExperience.e_id));
             sqlParameters.Add(DBClient.AddParameters("u_id", SqlDbType.Int, id));
@@ -122,38 +128,42 @@ namespace OnJob_BAL
             sqlParameters.Add(DBClient.AddParameters("ending_year", SqlDbType.VarChar, ObjExperience.ending_year));
             sqlParameters.Add(DBClient.AddParameters("description ", SqlDbType.VarChar, ObjExperience.description));
             sqlParameters.Add(DBClient.AddParameters("currently_working_here", SqlDbType.Bit, ObjExperience.currently_working_here));
-            CommonDal.Crud("EditExperience", sqlParameters.ToArray());
+            CommonDal.Crud(spName, sqlParameters.ToArray());
 
         }
 
         public void DeleteExperience(int id)
         {
+			string spName = "[DeleteExperience]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id)); 
-            CommonDal.Crud("DeleteExperience", sqlParameters.ToArray());
+            CommonDal.Crud(spName, sqlParameters.ToArray());
 
         }
 
         public List<Experience> FetchExperience(int id)
         {
+			string spName = "[GetExperience]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
-            List<Experience> jobData = CommonDal.ExecuteProcedure<Experience>("GetExperience", sqlParameters.ToArray()).ToList();
+            List<Experience> jobData = CommonDal.ExecuteProcedure<Experience>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
        
 
         public AddExperienceModel GetExperience_Byid(int id)
         {
+			string spName = "[GetExperience_by_id]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
-            AddExperienceModel jobData = CommonDal.SelectObject<AddExperienceModel>("GetExperience_by_id", sqlParameters.ToArray());
+            AddExperienceModel jobData = CommonDal.SelectObject<AddExperienceModel>(spName, sqlParameters.ToArray());
             return jobData;
         }
 
 
         public void AddEducation(Education  ObjEducation, int id)
         {
+			string spName = "[AddEduction]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("user_id", SqlDbType.Int, id));
             sqlParameters.Add(DBClient.AddParameters("Degree_Level", SqlDbType.VarChar, ObjEducation.Degree_Level));
@@ -162,37 +172,40 @@ namespace OnJob_BAL
             sqlParameters.Add(DBClient.AddParameters("Institution", SqlDbType.VarChar, ObjEducation.Institution));
             sqlParameters.Add(DBClient.AddParameters("Completion_Year", SqlDbType.VarChar, ObjEducation.Completion_Year));
            
-            CommonDal.Crud("AddEduction", sqlParameters.ToArray());
+            CommonDal.Crud(spName, sqlParameters.ToArray());
 
         }
 
         public List<Education> FetchEducation(int id)
         {
+			string spName = "[GetEducation]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
-            List<Education> jobData = CommonDal.ExecuteProcedure<Education>("GetEducation", sqlParameters.ToArray()).ToList();
+            List<Education> jobData = CommonDal.ExecuteProcedure<Education>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
 
         public void DeleteEducation(int id)
         {
+			string spName = "[DeleteEducation]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
-            CommonDal.Crud("DeleteEducation", sqlParameters.ToArray());
+            CommonDal.Crud(spName, sqlParameters.ToArray());
 
         }
 
         public Education GetEducation_By_id(int id)
         {
+			string spName = "[GetEducation_by_id]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
-            Education jobData = CommonDal.SelectObject<Education>("GetEducation_by_id", sqlParameters.ToArray());
+            Education jobData = CommonDal.SelectObject<Education>(spName, sqlParameters.ToArray());
             return jobData;
         }
 
         public void EditEducation(Education  ObjEducation, int id)
         {
-
+			string spName = "[EditEducation]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, ObjEducation.id));
             sqlParameters.Add(DBClient.AddParameters("user_id", SqlDbType.Int, id));
@@ -201,234 +214,254 @@ namespace OnJob_BAL
             sqlParameters.Add(DBClient.AddParameters("Major_Subject", SqlDbType.VarChar, ObjEducation.Major_Subject));
             sqlParameters.Add(DBClient.AddParameters("Institution", SqlDbType.VarChar, ObjEducation.Institution));
             sqlParameters.Add(DBClient.AddParameters("Completion_Year", SqlDbType.VarChar, ObjEducation.Completion_Year));
-            CommonDal.Crud("EditEducation", sqlParameters.ToArray());
+            CommonDal.Crud(spName, sqlParameters.ToArray());
 
         }
 
         public void AddLanguage(Language Objlanguage, int id)
         {
+			string spName = "[AddLanguage]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("user_id", SqlDbType.Int, id));
             sqlParameters.Add(DBClient.AddParameters("language", SqlDbType.Int, Objlanguage.language));
             sqlParameters.Add(DBClient.AddParameters("proficiency", SqlDbType.Int, Objlanguage.proficiency));
 
-            CommonDal.Crud("AddLanguage", sqlParameters.ToArray());
+            CommonDal.Crud(spName, sqlParameters.ToArray());
 
         }
        
         public void EditLanguage(Language  Objlanguage, int id)
         {
-
+			string spName = "[EditLanguage]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, Objlanguage.id));
             sqlParameters.Add(DBClient.AddParameters("user_id", SqlDbType.Int, id));
             sqlParameters.Add(DBClient.AddParameters("language", SqlDbType.Int, Objlanguage.language));
             sqlParameters.Add(DBClient.AddParameters("proficiency", SqlDbType.Int, Objlanguage.proficiency));
-            CommonDal.Crud("EditLanguage", sqlParameters.ToArray());
+            CommonDal.Crud(spName, sqlParameters.ToArray());
 
         }
 
         public List<Language> GetLanguages(int id)
         {
+			string spName = "[GetLanguage]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.VarChar,Convert.ToInt32(id)));
-            List<Language> jobData = CommonDal.ExecuteProcedure<Language>("GetLanguage", sqlParameters.ToArray()).ToList();
+            List<Language> jobData = CommonDal.ExecuteProcedure<Language>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
 
         public void DeleteLanguage(int id)
         {
+			string spName = "[DeleteLanguage]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
-            CommonDal.Crud("DeleteLanguage", sqlParameters.ToArray());
+            CommonDal.Crud(spName, sqlParameters.ToArray());
 
         }
 
         public Language GetLanguage_By_id(int id)
         {
+			string spName = "[GetLanguage_by_id]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
-            Language jobData = CommonDal.SelectObject<Language>("GetLanguage_by_id", sqlParameters.ToArray());
+            Language jobData = CommonDal.SelectObject<Language>(spName, sqlParameters.ToArray());
             return jobData;
         }
 
 
         public void AddResume(User ObjUser)
         {
+			string spName = "[UploadResume]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, ObjUser.id));
             sqlParameters.Add(DBClient.AddParameters("resume", SqlDbType.VarChar, ObjUser.Resume));
             sqlParameters.Add(DBClient.AddParameters("resume_path", SqlDbType.VarChar, ObjUser.resume_path));
 
-            CommonDal.Crud("UploadResume", sqlParameters.ToArray());
+            CommonDal.Crud(spName, sqlParameters.ToArray());
 
         }
         public List<JobPost> GetJobPost()
         {
+			string spName = "[FetchJobPost]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>("FetchJobPost", sqlParameters.ToArray()).ToList();
+            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
 
 
         public List<Company> GetCompany()
         {
+			string spName = "[FetchCompany]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            List<Company> jobData = CommonDal.ExecuteProcedure<Company>("FetchCompany", sqlParameters.ToArray()).ToList();
+            List<Company> jobData = CommonDal.ExecuteProcedure<Company>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
 
         public JobPost GetJobPost_by_id(int id)
         {
+			string spName = "[GetPostJobInfo_By_id]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
-            JobPost jobData = CommonDal.SelectObject<JobPost>("GetPostJobInfo_By_id", sqlParameters.ToArray());
+            JobPost jobData = CommonDal.SelectObject<JobPost>(spName, sqlParameters.ToArray());
             return jobData;
         }
 
         public DataSet savedJob(int u_id,int job_id)
         {
-
+			string spName = "[savedjob]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-           
             sqlParameters.Add(DBClient.AddParameters("u_id", SqlDbType.Int, u_id));
             sqlParameters.Add(DBClient.AddParameters("job_id", SqlDbType.Int, job_id));
-            DataSet ds = CommonDal.ExecuteDataSet("savedjob", sqlParameters.ToArray());
+            DataSet ds = CommonDal.ExecuteDataSet(spName, sqlParameters.ToArray());
             return ds;
         }
 
 
         public List<JobPost> GetSavedJob_byId(int id)
         {
+			string spName = "[FerchSavedJob]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("u_id", SqlDbType.VarChar, Convert.ToInt32(id)));
-            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>("FerchSavedJob", sqlParameters.ToArray()).ToList();
+            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
 
         public void RemoveSavedJob(int id)
         {
+			string spName = "[RemoveSaveJob]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
-            CommonDal.Crud("RemoveSaveJob", sqlParameters.ToArray());
+            CommonDal.Crud(spName, sqlParameters.ToArray());
 
         }
 
 
         public List<Category> GetCategory()
         {
+			string spName = "[FetchCategoriesId]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            List<Category> jobData = CommonDal.ExecuteProcedure<Category>("FetchCategoriesId", sqlParameters.ToArray()).ToList();
+            List<Category> jobData = CommonDal.ExecuteProcedure<Category>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
 
         public Company GetCompany_by_id(int id)
         {
+			string spName = "[GetCompanyInfo_By_id]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
-            Company company= CommonDal.SelectObject<Company>("GetCompanyInfo_By_id", sqlParameters.ToArray());
+            Company company= CommonDal.SelectObject<Company>(spName, sqlParameters.ToArray());
             return company;
         }
 
         public List<JobPost> GetJobCompany_by_id(int id)
         {
+			string spName = "[GetJobByCompany]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
-            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>("GetJobByCompany", sqlParameters.ToArray()).ToList();
+            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
 
         public List<JobPost> GetJobBy_CategoryId(int id)
         {
+			string spName = "[FetchJobByCategoryId]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("cat_id", SqlDbType.Int, id));
-            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>("FetchJobByCategoryId", sqlParameters.ToArray()).ToList();
+            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
 
         public List<Category> GetJobCountByCategory()
         {
+			string spName = "[FetchCategoryCount]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            List<Category> jobData = CommonDal.ExecuteProcedure<Category>("FetchCategoryCount", sqlParameters.ToArray()).ToList();
+            List<Category> jobData = CommonDal.ExecuteProcedure<Category>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
 
         public List<Industry_Type> GetJobCountByIndustry()
         {
+			string spName = "[FetchindustryCount]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            List<Industry_Type> jobData = CommonDal.ExecuteProcedure<Industry_Type>("FetchindustryCount", sqlParameters.ToArray()).ToList();
+            List<Industry_Type> jobData = CommonDal.ExecuteProcedure<Industry_Type>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
 
         public List<JobPost> GetJobBy_IndustryId(int id)
         {
+			string spName = "[FetchJobByIndustryId]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("industry_id", SqlDbType.Int, id));
-            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>("FetchJobByIndustryId", sqlParameters.ToArray()).ToList();
+            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
 
         public List<State> GetJobCountByState()
         {
+			string spName = "[FetchLocationCount]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-            List<State> jobData = CommonDal.ExecuteProcedure<State>("FetchLocationCount", sqlParameters.ToArray()).ToList();
+            List<State> jobData = CommonDal.ExecuteProcedure<State>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
 
         public List<JobPost> GetJobBy_LocationId(int id)
         {
+			string spName = "[FetchJobByLocationId]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("s_id", SqlDbType.Int, id));
-            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>("FetchJobByLocationId", sqlParameters.ToArray()).ToList();
+            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
        
         public List<JobPost> GetJobBy_Search(int cat_id,int s_id)
         {
+			string spName = "[FetchJobPostBySearch]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("cat_id", SqlDbType.Int, cat_id));
             sqlParameters.Add(DBClient.AddParameters("s_id", SqlDbType.Int, s_id));
-            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>("FetchJobPostBySearch", sqlParameters.ToArray()).ToList();
+            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
         }
 
         public DataSet AppliedJob(int u_id, int job_id,int c_id,string msg)
         {
-
-            List<SqlParameter> sqlParameters = new List<SqlParameter>();
-
+			string spName = "[AppliedJob]";
+            List<SqlParameter> sqlParameters = new List<SqlParameter>();	
             sqlParameters.Add(DBClient.AddParameters("u_id", SqlDbType.Int, u_id));
             sqlParameters.Add(DBClient.AddParameters("job_id", SqlDbType.Int, job_id));
             sqlParameters.Add(DBClient.AddParameters("c_id", SqlDbType.Int, c_id));
             sqlParameters.Add(DBClient.AddParameters("msg", SqlDbType.VarChar, msg));
-            DataSet ds = CommonDal.ExecuteDataSet("AppliedJob", sqlParameters.ToArray());
+            DataSet ds = CommonDal.ExecuteDataSet(spName, sqlParameters.ToArray());
             return ds;
         }
 
         public List<JobPost> GetAppliedJob_byId(int id)
         {
+			string spName = "[FetchAppliedJob]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("u_id", SqlDbType.VarChar, Convert.ToInt32(id)));
-            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>("FetchAppliedJob", sqlParameters.ToArray()).ToList();
+            List<JobPost> jobData = CommonDal.ExecuteProcedure<JobPost>(spName, sqlParameters.ToArray()).ToList();
             return jobData;
+			
         }
         public void RemoveAppliedJob(int id)
         {
+			string spName = "[RemoveAppliedJob]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
-            CommonDal.Crud("RemoveAppliedJob", sqlParameters.ToArray());
+            CommonDal.Crud(spName, sqlParameters.ToArray());
 
         }
         public DataSet SendContact(string username,string email,string subject,string message)
         {
-
+            string spName = "[SendContact]";
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
-
             sqlParameters.Add(DBClient.AddParameters("username", SqlDbType.VarChar, username));
             sqlParameters.Add(DBClient.AddParameters("email", SqlDbType.VarChar,email));
             sqlParameters.Add(DBClient.AddParameters("subject", SqlDbType.VarChar,subject));
             sqlParameters.Add(DBClient.AddParameters("message", SqlDbType.VarChar, message));
-            DataSet ds = CommonDal.ExecuteDataSet("SendContact", sqlParameters.ToArray());
+            DataSet ds = CommonDal.ExecuteDataSet(spName, sqlParameters.ToArray());
             return ds;
         }
 
@@ -448,6 +481,8 @@ namespace OnJob_BAL
             sqlParameters.Add(DBClient.AddParameters("id", SqlDbType.Int, id));
             IList<Category> roleList = CommonDal.ExecuteProcedure<Category>(spName, sqlParameters.ToArray());
             return roleList.ToList();
+
+
         }
 
 
@@ -466,12 +501,13 @@ namespace OnJob_BAL
 
         public List<City> GetCity(int id)
         {
+			 string spName = "[FetchCity]";
             string constring = ConfigurationManager.ConnectionStrings["Dbconnection"].ToString();
             con = new SqlConnection(constring);
 
             List<City> cities= new List<City>();
 
-            SqlCommand cmd = new SqlCommand("FetchCity", con);
+            SqlCommand cmd = new SqlCommand(spName, con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@s_id", id);
             SqlDataAdapter sd = new SqlDataAdapter(cmd);
